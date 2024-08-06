@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.example.demo.mybatis.mapper.DataMapper" >
+    <insert id="add" parameterType="com.example.demo.dto.data.Datas">
+        INSERT INTO datas (data_name, type_id, type_name, data_desc, data_status, upload_name, create_name, create_time, update_name, update_time)
+        VALUES(#{datas.dataName},#{datas.typeId},#{datas.typeName},#{datas.dataDesc},#{datas.dataStatus},#{datas.uploadName},#{datas.createName},NOW(),#{datas.updateName},NOW());
+    </insert>
+
+
+    <select id="selectDatas" resultType="com.example.demo.dto.data.Datas">
+        SELECT * FROM  datas
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM datas WHERE id = #{id}
+    </delete>
+</mapper>

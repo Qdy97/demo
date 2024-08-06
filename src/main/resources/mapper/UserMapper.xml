@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.example.demo.mybatis.mapper.UserMapper" >
+    <insert id="add" parameterType="com.example.demo.dto.user.User">
+        INSERT INTO USER (username,PASSWORD,login_id,age,gender,user_desc,expiry_date,create_name,create_time,update_name,update_time)
+        VALUE (#{user.username},#{user.password},#{user.loginId},#{user.age},#{user.gender},#{user.userDesc},#{user.expiryDate},#{user.createName},#{user.createTime},#{user.updateName},#{user.updateTime})
+    </insert>
+
+    <select id="queryUserByUsername" resultType="com.example.demo.dto.user.User">
+        SELECT * FROM USER WHERE login_id = #{loginId};
+    </select>
+
+    <select id="selectCountsByLoginId" resultType="java.lang.Integer">
+        SELECT count(*) from USER  WHERE  login_id = #{loginId}
+    </select>
+
+    <select id="selectUsers" resultType="com.example.demo.dto.user.User">
+        SELECT id,username,login_id,age,gender,user_desc,expiry_date,create_name,create_time,update_name,update_time FROM USER
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM USER WHERE id = #{id}
+    </delete>
+</mapper>

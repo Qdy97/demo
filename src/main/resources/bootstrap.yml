@@ -1,0 +1,49 @@
+#spring:
+#  application:
+#    name: demo
+#  profiles:
+#    active: dev
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        file-extension: yaml
+#        namespace: 41674dee-4dfa-4a47-bb20-11fef43fd2cc
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8084
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: ${spring.cloud.nacos.config.server-addr}
+#            dataid: ${spring.application.name}-sentinel-gw-flow
+#            groupid: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: gw-flow
+#            namespace: 41674dee-4dfa-4a47-bb20-11fef43fd2cc
+server:
+  port: 8888
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbcp2:
+      min-idle: 5         #数据库连接池的最小维持连接数
+      initial-size: 5       #初始化连接数
+      max-idle: 5           #最大连接数
+      max-wait-millis: 15
+#mybatis配置路径
+mybatis:
+  mapper-locations: classpath*:/mapper/**.xml
+  configuration:
+    map-underscore-to-camel-case: true #忽略下划线
+#pageHelper分页插件
+pagehelper:
+  helper-dialect: mysql
+  params: count
+  reasonable: true
+  support-methods-arguments: true
